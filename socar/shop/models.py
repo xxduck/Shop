@@ -14,6 +14,7 @@ class Commodity(models.Model):
     price = models.FloatField(verbose_name="商品价格")
     status = models.IntegerField(verbose_name="商品状态", choices=STATUS)
     ptime = models.DateTimeField("上架时间", auto_now=True)
+    img = models.ImageField(verbose_name="商品图片", upload_to='./imgs/')
 
     class Meta:
         verbose_name = verbose_name_plural = "商品信息"

@@ -11,9 +11,12 @@
     <ul>
         <li>商品列表</li>
         {% for good in goods%}
+        <img src="static/{{ good.img }}" alt="{{ good.img }}">
+        <br>
         {{ good.name }}
         {{ good.price }}
         {{ good.ptime }}
+        <br>
         {% endfor %}
     </ul>
 </body>

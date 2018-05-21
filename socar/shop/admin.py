@@ -13,6 +13,7 @@ class CommodityAdmin(admin.ModelAdmin):
                 'name',
                 'price',
                 'status',
+                'img'
             )
         }),
     )
