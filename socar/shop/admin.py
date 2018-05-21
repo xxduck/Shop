@@ -7,6 +7,11 @@ from .models import Commodity
 class CommodityAdmin(admin.ModelAdmin):
     list_display = ('name', 'price', 'status', 'ptime')
     # fields = ('id', 'name', 'price', 'status')
+    search_fields = ('name', 'ptime', 'status')
+    list_filter = (
+        'ptime',
+        'status',
+    )
     fieldsets = (
         (None, {
             'fields': (

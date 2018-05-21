@@ -11,11 +11,14 @@
     <ul>
         <li>商品列表</li>
         {% for good in goods%}
-        <img src="static/{{ good.img }}" alt="{{ good.img }}">
+        <img src="/static/{{ good.img }}" alt="{{ good.img }}">
         <br>
-        {{ good.name }}
-        {{ good.price }}
-        {{ good.ptime }}
+        商品名称：{{ good.name }}&emsp;
+        商品价格：{{ good.price }}&emsp;
+        {% if good.discount %}
+        商品折扣：{{ good.discount }}&emsp;
+        {% endif %}
+        商品上架时间：{{ good.ptime }}&emsp;
         <br>
         {% endfor %}
     </ul>
