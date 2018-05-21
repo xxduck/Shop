@@ -5,16 +5,17 @@ from .models import Commodity
 
 
 class CommodityAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name')
-
+    list_display = ('name', 'price', 'status', 'ptime')
+    # fields = ('id', 'name', 'price', 'status')
     fieldsets = (
         (None, {
             'fields': (
-                'id',
-                'name'
+                'name',
+                'price',
+                'status',
             )
-        })
+        }),
     )
 
 
-admin.register(Commodity, CommodityAdmin)
+admin.site.register(Commodity, CommodityAdmin)

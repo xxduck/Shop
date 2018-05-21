@@ -8,5 +8,13 @@
 </head>
 <body>
      <h2>欢迎来到在线商城</h2>
+    <ul>
+        <li>商品列表</li>
+        {% for good in goods%}
+        {{ good.name }}
+        {{ good.price }}
+        {{ good.ptime }}
+        {% endfor %}
+    </ul>
 </body>
 </html>

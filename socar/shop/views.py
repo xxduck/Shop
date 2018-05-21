@@ -1,7 +1,10 @@
 from django.shortcuts import render
-
+from .models import Commodity
 # Create your views here.
 
 
 def index(request):
-    return render(request, 'index.html')
+    goods = Commodity.objects.all()
+    return render(request, 'index.html', context={
+        'goods': goods,
+    })
