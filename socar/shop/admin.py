@@ -17,8 +17,10 @@ class CommodityAdmin(admin.ModelAdmin):
             'fields': (
                 'name',
                 'price',
+                'discount',
                 'status',
-                'img'
+                'img',
+                'context'
             )
         }),
     )

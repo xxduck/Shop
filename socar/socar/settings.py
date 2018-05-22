@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'shop',
+    'ckeditor',
+    'ckeditor_uploader',
 ]
 
 MIDDLEWARE = [
@@ -120,8 +122,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'shop/static')
+    os.path.join(BASE_DIR, 'shop/static'),
+    os.path.join(BASE_DIR, 'shop/static/media')
 ]
 
-MEDIA_URL = '/static/img/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'shop/static')
+MEDIA_URL = 'static/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'shop/static/media')
+CKEDITOR_UPLOAD_PATH = 'upload/'
