@@ -65,6 +65,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',
             ],
         },
     },
@@ -122,10 +123,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'shop/static'),
-    os.path.join(BASE_DIR, 'shop/static/media')
+    os.path.join(BASE_DIR, 'shop/static')
 ]
 
-MEDIA_URL = 'static/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'shop/static/media')
+MEDIA_URL = '/static/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'shop/static/media/')
 CKEDITOR_UPLOAD_PATH = 'upload/'

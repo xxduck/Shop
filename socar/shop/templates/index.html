@@ -11,7 +11,7 @@
     <ul>
         <li>商品列表</li>
         {% for good in goods%}
-        <img src="/static/media/{{ good.img }}" alt="{{ good.img }}">
+        <img src="{{ MEDIA_URL }}{{ good.img }}" alt="{{ good.img }}">
         <br>
         商品名称：{{ good.name }}&emsp;
         商品价格：{{ good.price }}&emsp;
