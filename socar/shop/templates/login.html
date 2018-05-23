@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <form action="" method="post">
+            <ul>
+                {% csrf_token %}
+                    {% for field in form %}
+                <li>
+                        
+                        {{ field.label_tag}}
+                        {{ field }}
+                        {{ field.errors }}
+                        
+                </li>
+                {% endfor %}
+                <li><input type="submit" value="提交"></li>
+            </ul>
+        </form>
+    </div>
+
+</body>
+</html>

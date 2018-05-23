@@ -5,7 +5,7 @@ from ckeditor_uploader.fields import RichTextUploadingField
 
 
 class Commodity(models.Model):
-    #  商品
+    #  商品详情
     STATUS = (
         (1, "在售"),
         (2, "缺货"),
