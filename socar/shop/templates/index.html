@@ -13,7 +13,8 @@
         {% for good in goods%}
         <img src="{{ MEDIA_URL }}{{ good.img }}" alt="{{ good.img }}">
         <br>
-        商品名称：{{ good.name }}&emsp;
+        
+        商品名称：<a href="{% url 'info' good.id %}">{{ good.name }}&emsp;</a>
         商品价格：{{ good.price }}&emsp;
         {% if good.discount %}
         商品折扣：{{ good.discount }}&emsp;

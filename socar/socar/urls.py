@@ -15,12 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from shop.views import index, create, login
+from shop.views import index, create, login, info
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name='index'),
     path("create/", create, name="create"),
     path("login/", login, name="login"),
-    path('ckeditor/', include('ckeditor_uploader.urls'))
+    path('ckeditor/', include('ckeditor_uploader.urls')),
+    path("<int:id>/", info, name="info")
 ]
