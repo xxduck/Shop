@@ -21,3 +21,12 @@ class Commodity(models.Model):
 
     class Meta:
         verbose_name = verbose_name_plural = "商品信息"
+
+
+class MyUser(models.Model):
+    # 用户模型
+
+    pass
+
+    class Meta:
+        verbose_name = "注册用户"
