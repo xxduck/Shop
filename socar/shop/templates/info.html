@@ -11,7 +11,36 @@
         <h2>商品详情</h2>
     </div>
     <table>
-       <tr></tr>
+       <!-- <tr>商品名称</tr>
+       <pre>{{ good.name }}</pre>
+       <tr>商品价格</tr>
+       <pre>{{ good.price }}</pre>
+       <tr>商品状态</tr>
+       <pre>{{ good.status }}</pre>
+       <tr>商品上架时间</tr>
+       <pre>{{ good.ptime }}</pre>
+       <tr>商品图片</tr>
+       <pre>{{ good.img }}</pre>
+       <tr>商品介绍</tr>
+       <pre>{{ good.context }}</pre> -->
+       
+        {% for key,value in good.items %}
+        {% if key != "_state" %}
+            {% if key == "context" %}
+                <tr>
+                    <b>{{key}}</b>
+                    <pre>{{ value | safe }}</pre>
+                </tr>
+            {% else %}
+
+                <tr>
+                    <b>{{key}}</b>
+                    <pre>{{ value }}</pre>
+                </tr>
+            {% endif %}
+        
+        {% endif %}
+        {% endfor %}
     </table>
 </body>
 </html>
