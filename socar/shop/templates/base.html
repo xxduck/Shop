@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>在线商城</title>
+</head>
+<body>
+    <!-- 导航栏 -->
+    {% include "nav.html" %}
+   <!-- 页面主体部分 -->
+    {% block body %}
+    <h1>页面主体</h1>
+    {% endblock%}
+    <!-- 页脚 -->
+    {% include "foot.html" %}
+</body>
+</html>

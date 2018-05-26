@@ -1,46 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <div>
-        <h2>商品详情</h2>
-    </div>
-    <table>
-       <!-- <tr>商品名称</tr>
-       <pre>{{ good.name }}</pre>
-       <tr>商品价格</tr>
-       <pre>{{ good.price }}</pre>
-       <tr>商品状态</tr>
-       <pre>{{ good.status }}</pre>
-       <tr>商品上架时间</tr>
-       <pre>{{ good.ptime }}</pre>
-       <tr>商品图片</tr>
-       <pre>{{ good.img }}</pre>
-       <tr>商品介绍</tr>
-       <pre>{{ good.context }}</pre> -->
-       
-        {% for key,value in good.items %}
-        {% if key != "_state" %}
-            {% if key == "context" %}
-                <tr>
-                    <b>{{key}}</b>
-                    <pre>{{ value | safe }}</pre>
-                </tr>
-            {% else %}
+{% extends "base.html" %}
 
-                <tr>
-                    <b>{{key}}</b>
-                    <pre>{{ value }}</pre>
-                </tr>
-            {% endif %}
+{% block body %}
+
+    <div>
+            <h2>商品详情</h2>
+        </div>
+        <table>
+        <!-- <tr>商品名称</tr>
+        <pre>{{ good.name }}</pre>
+        <tr>商品价格</tr>
+        <pre>{{ good.price }}</pre>
+        <tr>商品状态</tr>
+        <pre>{{ good.status }}</pre>
+        <tr>商品上架时间</tr>
+        <pre>{{ good.ptime }}</pre>
+        <tr>商品图片</tr>
+        <pre>{{ good.img }}</pre>
+        <tr>商品介绍</tr>
+        <pre>{{ good.context }}</pre> -->
         
-        {% endif %}
-        {% endfor %}
-    </table>
-</body>
-</html>
+            {% for key,value in good.items %}
+            {% if key != "_state" %}
+                {% if key == "context" %}
+                    <tr>
+                        <b>{{key}}</b>
+                        <pre>{{ value | safe }}</pre>
+                    </tr>
+                {% else %}
+
+                    <tr>
+                        <b>{{key}}</b>
+                        <pre>{{ value }}</pre>
+                    </tr>
+                {% endif %}
+            
+            {% endif %}
+            {% endfor %}
+        </table>
+
+{% endblock %}

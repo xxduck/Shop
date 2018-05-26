@@ -28,8 +28,6 @@ def info(request, id):
     try:
         good = Commodity.objects.filter(id=id)[0]
         
-        for k,v in good.__dict__.items():
-            print(k, v)
         return render(request, 'info.html', context={
             'good': good.__dict__,
         })
