@@ -3,7 +3,10 @@ from django.http import Http404, HttpResponse
 from .models import Commodity, MyUser
 from .forms import UserForm, UserRegist
 from django.contrib.auth.hashers import make_password, check_password
+from django.contrib.auth import authenticate, login
+from django.db.models import Q 
 # Create your views here.
+
 
 
 def index(request):
@@ -32,7 +35,7 @@ def create(request):
         "form": form})
 
 
-def login(request):
+def user_login(request):
     if request.method == "POST":
         user = UserForm(request.POST)
         if user.is_valid():
@@ -40,7 +43,10 @@ def login(request):
             passwd = request.POST.get("passwd1")
             tmp = MyUser.objects.filter(username=username)[0]
             if check_password(passwd, tmp.passwd1):
-                return HttpResponse("登录成功")
+                login_user = MyUser.objects.get(Q(username=username))
+                if login_user:
+                    login(request, login_user)
+                    return HttpResponse("登录成功")
 
     return render(request, "create.html", context={
         "form": UserForm})
@@ -56,3 +62,7 @@ def info(request, id):
     
     except Exception as e:
         raise Http404(e)
+
+
+def perinfo(request, nick):
+    return render(request, "perinfo.html")
