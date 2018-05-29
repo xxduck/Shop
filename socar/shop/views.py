@@ -38,7 +38,7 @@ def login(request):
         if user.is_valid():
             username = request.POST.get("username")
             passwd = request.POST.get("passwd1")
-            tmp = MyUser.objects.filter(username=username)[1]
+            tmp = MyUser.objects.filter(username=username)[0]
             if check_password(passwd, tmp.passwd1):
                 return HttpResponse("登录成功")
 
