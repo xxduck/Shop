@@ -26,7 +26,11 @@ class Commodity(models.Model):
 class MyUser(models.Model):
     # 用户模型
 
-    pass
+    username = models.EmailField(verbose_name="email")
+    passwd1 = models.CharField(verbose_name="passwd1", max_length=255, null=False)
+    passwd2 = models.CharField(verbose_name="passwd2", max_length=255)
+    nick = models.CharField(verbose_name="nick", max_length=255)
+    create_time =  models.DateTimeField(verbose_name="注册时间", auto_now=True)
 
     class Meta:
         verbose_name = "注册用户"
