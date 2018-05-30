@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from shop.views import index, create, user_login, info
+from shop.views import index, create, user_login, info, user_logout
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -23,6 +23,6 @@ urlpatterns = [
     path("create/", create, name="create"),
     path("login/", user_login, name="login"),
     path('ckeditor/', include('ckeditor_uploader.urls')),
-    path("<int:id>/", info, name="info")
-    path("perinfo/", )
+    path("<int:id>/", info, name="info"),
+    path("logout/", user_logout, name="logout")
 ]

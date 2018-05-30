@@ -3,8 +3,8 @@ from django.http import Http404, HttpResponse
 from .models import Commodity, MyUser
 from .forms import UserForm, UserRegist
 from django.contrib.auth.hashers import make_password, check_password
-from django.contrib.auth import authenticate, login
-from django.db.models import Q 
+from django.contrib.auth import authenticate, login, logout
+from django.db.models import Q
 # Create your views here.
 
 
@@ -43,13 +43,27 @@ def user_login(request):
             passwd = request.POST.get("passwd1")
             tmp = MyUser.objects.filter(username=username)[0]
             if check_password(passwd, tmp.passwd1):
-                login_user = MyUser.objects.get(Q(username=username))
+                login_user = MyUser.objects.get(username=username)
+                login_user.backend = "/"
+                # print(login_user.username)
+                print(login_user)
                 if login_user:
                     login(request, login_user)
-                    return HttpResponse("登录成功")
+                    print(request.user)
+                    return render(request, "index.html")
 
     return render(request, "create.html", context={
         "form": UserForm})
+
+
+def user_logout(request):
+    print()
+    if request.user.is_authenticated:
+        print(request.sessions)
+        logout(request)
+        return HttpResponse("退出成功")
+    else:
+        return HttpResponse("您还没有登陆过")
 
 
 def info(request, id):

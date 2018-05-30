@@ -30,7 +30,7 @@ class MyUser(models.Model):
     passwd1 = models.CharField(verbose_name="passwd1", max_length=255, null=False)
     passwd2 = models.CharField(verbose_name="passwd2", max_length=255)
     nick = models.CharField(verbose_name="nick", max_length=255)
-    create_time =  models.DateTimeField(verbose_name="注册时间", auto_now=True)
+    create_time = models.DateTimeField(verbose_name="注册时间", auto_now=True)
     last_login = models.DateTimeField(verbose_name="上次登录时间", auto_now=True)
 
     class Meta:
