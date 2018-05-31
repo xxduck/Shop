@@ -130,3 +130,7 @@ STATICFILES_DIRS = [
 MEDIA_URL = '/static/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'shop/static/media/')
 CKEDITOR_UPLOAD_PATH = 'upload/'
+
+
+# Django 只在需要的时候才送出cookie。 如果你压根儿就没有设置任何会话数据，它不会 送出会话cookie(除非 SESSION_SAVE_EVERY_REQUEST 设置为 True )。
+SESSION_SAVE_EVERY_REQUEST = True

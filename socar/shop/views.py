@@ -57,7 +57,7 @@ def user_login(request):
 
 
 def user_logout(request):
-    print()
+    print(request.user)
     if request.user.is_authenticated:
         print(request.sessions)
         logout(request)
