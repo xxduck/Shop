@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-LOGIN_URL = '/login/'
+LOGIN_URL = '/accounts/login/'
 
 # Application definition
 
@@ -58,7 +58,7 @@ ROOT_URLCONF = 'socar.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, './shop/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

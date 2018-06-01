@@ -15,14 +15,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from shop.views import index, create, user_login, info, user_logout
+from shop.views import index, create, info
+from django.contrib.auth.views import logout, LoginView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name='index'),
     path("create/", create, name="create"),
-    path("login/", user_login, name="login"),
+    path("accounts/login/", LoginView.as_view(template_name='login.html'), name="login"),
+    # 上面这个函数需要设置next  在html中设置
+    path("accounts/", include('django.contrib.auth.urls')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path("<int:id>/", info, name="info"),
-    path("logout/", user_logout, name="logout")
+    path("logout/", logout, name="logout")
 ]

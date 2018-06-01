@@ -5,19 +5,9 @@
 
     <div>
         <form action="" method="post">
-            <ul>
-                {% csrf_token %}
-                    {% for field in form %}
-                <li>
-                        
-                        {{ field.label_tag}}
-                        {{ field }}
-                        {{ field.errors }}
-                        
-                </li>
-                {% endfor %}
-                <li><input type="submit" value="提交"></li>
-            </ul>
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" value="提交">
         </form>
     </div>
 

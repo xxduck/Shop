@@ -1,10 +1,11 @@
 from django.shortcuts import render
 from django.http import Http404, HttpResponse
 from .models import Commodity, MyUser
-from .forms import UserForm, UserRegist
+# from .forms import UserForm, UserRegist
 from django.contrib.auth.hashers import make_password, check_password
 from django.contrib.auth import authenticate, login, logout
-from django.db.models import Q
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 
@@ -17,43 +18,23 @@ def index(request):
 
 
 def create(request):
-    form = UserRegist
 
     if request.method == "POST":
-        user = UserRegist(request.POST)
+        user = UserCreationForm(request.POST)
         if user.is_valid():
-            username = request.POST.get("username")
-            passwd1 = request.POST.get("passwd1")
-            passwd2 = request.POST.get("passwd2")
-            nick = request.POST.get("nick")
-
-            if passwd1 == passwd2:
-                MyUser.objects.create(username=username, passwd1=make_password(passwd1), passwd2=make_password(passwd2), nick=nick)
-                return HttpResponse(content="注册成功")
+            # username = request.POST.get("username")
+            # passwd1 = request.POST.get("passwd1")
+            # passwd2 = request.POST.get("passwd2")
+            # nick = request.POST.get("nick")
+            print(user.cleaned_data.items())
+            print(user.cleaned_data.keys())
+            user.save()
+            # if passwd1 == passwd2:
+            #     MyUser.objects.create(username=username, passwd1=make_password(passwd1), passwd2=make_password(passwd2), nick=nick)
+            return HttpResponse(content="注册成功")
 
     return render(request, "create.html", context={
-        "form": form})
-
-
-def user_login(request):
-    if request.method == "POST":
-        user = UserForm(request.POST)
-        if user.is_valid():
-            username = request.POST.get("username")
-            passwd = request.POST.get("passwd1")
-            tmp = MyUser.objects.filter(username=username)[0]
-            if check_password(passwd, tmp.passwd1):
-                login_user = MyUser.objects.get(username=username)
-                login_user.backend = "/"
-                # print(login_user.username)
-                print(login_user)
-                if login_user:
-                    login(request, login_user)
-                    print(request.user)
-                    return render(request, "index.html")
-
-    return render(request, "create.html", context={
-        "form": UserForm})
+        "form": UserCreationForm})
 
 
 def user_logout(request):
@@ -66,6 +47,7 @@ def user_logout(request):
         return HttpResponse("您还没有登陆过")
 
 
+@login_required
 def info(request, id):
     try:
         good = Commodity.objects.filter(id=id)[0]

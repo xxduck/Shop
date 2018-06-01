@@ -4,13 +4,16 @@ from django import forms
 from .models import MyUser
 
 
-class UserForm(forms.ModelForm):
-    class Meta:
-        model = MyUser
-        fields = ['username', "passwd1"]
+# class UserForm(forms.ModelForm):
+#     class Meta:
+#         model = MyUser
+#         fields = ['username', "passwd1"]
 
 
-class UserRegist(forms.ModelForm):
-    class Meta:
-        model = MyUser
-        fields = ['username', 'passwd1', 'passwd2', 'nick']
+# class UserRegist(forms.ModelForm):
+#     class Meta:
+#         model = MyUser
+#         fields = ['username', 'passwd1', 'passwd2', 'nick']
+
+# class CreateUser(UserCreationForm):
+#     pass
