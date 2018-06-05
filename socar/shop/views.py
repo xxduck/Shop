@@ -47,7 +47,6 @@ def user_logout(request):
         return HttpResponse("您还没有登陆过")
 
 
-@login_required
 def info(request, id):
     try:
         good = Commodity.objects.filter(id=id)[0]
