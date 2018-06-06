@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import Http404, HttpResponse
-from .models import Commodity, MyUser
+from .models import Commodity, Nuser
 # from .forms import UserForm, UserRegist
 from django.contrib.auth.hashers import make_password, check_password
 from django.contrib.auth import authenticate, login, logout
@@ -17,10 +17,16 @@ def index(request):
     })
 
 
+class CreationForm(UserCreationForm):
+
+    class Meta(UserCreationForm.Meta):
+        model = Nuser
+
+
 def create(request):
 
     if request.method == "POST":
-        user = UserCreationForm(request.POST)
+        user = CreationForm(request.POST)
         if user.is_valid():
             # username = request.POST.get("username")
             # passwd1 = request.POST.get("passwd1")
@@ -34,7 +40,7 @@ def create(request):
             return HttpResponse(content="注册成功")
 
     return render(request, "create.html", context={
-        "form": UserCreationForm})
+        "form": CreationForm})
 
 
 def user_logout(request):

@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import Commodity, MyUser
+from .models import Commodity, Nuser
+# from django.contrib.auth.models import User
 
 # Register your models here.
 
@@ -26,5 +27,7 @@ class CommodityAdmin(admin.ModelAdmin):
     )
 
 
+
 admin.site.register(Commodity, CommodityAdmin)
-admin.site.register(MyUser)
+# admin.site.unregister(User)
+admin.site.register(Nuser)
