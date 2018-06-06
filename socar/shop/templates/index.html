@@ -1,6 +1,11 @@
 {% extends "base.html" %}
 {% block body %}
-<h2>欢迎来到在线商城</h2>
+<h2>
+    {% load upper %}
+    {% upper %}
+    欢迎来到aigo商城
+    {% endupper %}
+</h2>
     <ul>
         <li>商品列表</li>
         {% for good in goods%}
