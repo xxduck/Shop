@@ -18,3 +18,11 @@ class UpperNode(template.Node):
     def render(self, context):
         content = self.nodelist.render(context)
         return content.upper()
+
+
+# 自定义过滤器
+def ass(value1):
+    return value1 + "world"
+
+
+register.filter("ass", ass)

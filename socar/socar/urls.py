@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from shop.views import index, create, info
+from shop.views import index, create, info, a
 from django.contrib.auth.views import logout, LoginView
 
 urlpatterns = [
@@ -27,5 +27,6 @@ urlpatterns = [
     path("accounts/", include('django.contrib.auth.urls')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path("<int:id>/", info, name="info"),
-    path("logout/", logout, name="logout")
+    path("logout/", logout, name="logout"),
+    path("a/", a)
 ]

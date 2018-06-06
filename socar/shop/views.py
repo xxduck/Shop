@@ -6,6 +6,7 @@ from django.contrib.auth.hashers import make_password, check_password
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
+from .forms import MyForm
 # Create your views here.
 
 
@@ -14,6 +15,7 @@ def index(request):
     goods = Commodity.objects.all()
     return render(request, 'index.html', context={
         'goods': goods,
+        'hello': "hello",
     })
 
 
@@ -67,3 +69,19 @@ def info(request, id):
 
 def perinfo(request, nick):
     return render(request, "perinfo.html")
+
+
+def a(request):
+    if request.method == "GET":
+        
+        return render(request, "tmp.html", context={
+            "form": MyForm()})
+
+    if request.method=="POST":
+        form = MyForm(request.POST)
+        if form.is_valid():
+            print(form.cleaned_data)
+            return HttpResponse("success")
+        else:
+            return render(request, "tmp.html", context={
+            "form": form})
