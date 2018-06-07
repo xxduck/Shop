@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'shop',
     'ckeditor',
     'ckeditor_uploader',
+    'rest_framework',
+    'restfulshop'
 ]
 
 MIDDLEWARE = [

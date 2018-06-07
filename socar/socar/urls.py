@@ -15,9 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from shop import urls
+from shop import urls as surls
+from restfulshop import urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('shop/', include(urls))
+    path('shop/', include(surls)),
+    path("api/", include(urls))
 ]
