@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import Http404, HttpResponse
 from .models import Commodity, Nuser
-# from .forms import UserForm, UserRegist
+from .forms import BuyForm
 from django.contrib.auth.hashers import make_password, check_password
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
@@ -56,15 +56,16 @@ def user_logout(request):
 
 
 def info(request, id):
-    try:
-        good = Commodity.objects.filter(id=id)[0]
-        
-        return render(request, 'info.html', context={
-            'good': good.__dict__,
-        })
+    # try:
+    good = Commodity.objects.filter(id=id)[0]
     
-    except Exception as e:
-        raise Http404(e)
+    return render(request, 'info.html', context={
+        'good': good.__dict__,
+        'form': BuyForm(),
+    })
+    
+    # except Exception as e:
+    #     raise Http404(e)
 
 
 def perinfo(request, nick):

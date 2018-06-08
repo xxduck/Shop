@@ -30,3 +30,18 @@ class MyForm(forms.Form):
             return self.cleaned_data
         else:
             raise forms.ValidationError("电话号码有误")
+
+
+class BuyForm(forms.Form):
+    # 购买界面的表单
+    num = forms.IntegerField(label="数量", max_value=10, min_value=0)
+    colour = forms.ChoiceField(label="颜色", choices=(
+       (1, "黑色"),
+       (2, "红色"),
+       (3, "紫色"),
+    ))
+    size = forms.ChoiceField(label="尺码", choices=(
+        (1, "M"),
+       (2, "L"),
+       (3, "XL"),
+    ))

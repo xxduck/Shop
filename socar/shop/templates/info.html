@@ -36,6 +36,13 @@
             
             {% endif %}
             {% endfor %}
+
+            <form action="." method="post">
+                {% csrf_token %}
+                {{ form.as_table }}
+                <button type="submit">添加到购物车</button>
+                <button type="submit">立即购买</button>                
+            </form>
         </table>
 
 {% endblock %}
