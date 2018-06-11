@@ -10,6 +10,7 @@ from .forms import MyForm
 from django.views.generic import ListView
 # Create your views here.
 
+
 class Index(ListView):
     template_name = "index.html"
     model = Commodity
@@ -67,16 +68,32 @@ def user_logout(request):
 
 
 def info(request, id):
-    # try:
     good = Commodity.objects.filter(id=id)[0]
     
-    return render(request, 'info.html', context={
-        'good': good.__dict__,
-        'form': BuyForm(),
-    })
-    
-    # except Exception as e:
-    #     raise Http404(e)
+    if request.method == "GET":
+        try:
+            return render(request, 'info.html', context={
+                'good': good.__dict__,
+                'form': BuyForm(),
+            })
+        
+        except Exception as e:
+            raise Http404(e)
+    elif request.method == "POST":
+        form = BuyForm(request.POST)
+        if form.is_valid():
+            print(form.cleaned_data)
+            response = HttpResponse(str(good.price * form.cleaned_data.get("num")))
+            request.car.update({
+                good.name: form.cleaned_data.get("num")
+            })
+            return response
+        else:
+
+            return render(request, 'info.html', context={
+                    'good': good.__dict__,
+                    'form': form,
+                })
 
 
 def perinfo(request, nick):
@@ -89,7 +106,7 @@ def a(request):
         return render(request, "tmp.html", context={
             "form": MyForm()})
 
-    if request.method=="POST":
+    if request.method == "POST":
         form = MyForm(request.POST)
         if form.is_valid():
             print(form.cleaned_data)
@@ -97,3 +114,5 @@ def a(request):
         else:
             return render(request, "tmp.html", context={
             "form": form})
+
+    

@@ -6,19 +6,6 @@
             <h2>商品详情</h2>
         </div>
         <table>
-        <!-- <tr>商品名称</tr>
-        <pre>{{ good.name }}</pre>
-        <tr>商品价格</tr>
-        <pre>{{ good.price }}</pre>
-        <tr>商品状态</tr>
-        <pre>{{ good.status }}</pre>
-        <tr>商品上架时间</tr>
-        <pre>{{ good.ptime }}</pre>
-        <tr>商品图片</tr>
-        <pre>{{ good.img }}</pre>
-        <tr>商品介绍</tr>
-        <pre>{{ good.context }}</pre> -->
-        
             {% for key,value in good.items %}
             {% if key != "_state" %}
                 {% if key == "context" %}
@@ -36,13 +23,14 @@
             
             {% endif %}
             {% endfor %}
-
-            <form action="." method="post">
+            {% with tid=good.id %}
+            <form action="{% url 'info' id=tid %}" method="post">
                 {% csrf_token %}
                 {{ form.as_table }}
-                <button type="submit">添加到购物车</button>
-                <button type="submit">立即购买</button>                
+                <button type="submit" value="buy">立即购买</button>
+                <button type="submit" value="add">添加到购物车</button>                                    
             </form>
+            {% endwith %}
         </table>
 
 {% endblock %}
