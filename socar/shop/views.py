@@ -7,8 +7,19 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from .forms import MyForm
+from django.views.generic import ListView
 # Create your views here.
 
+class Index(ListView):
+    template_name = "index.html"
+    model = Commodity
+    paginate_by = 100
+    # def get(self, request, *args, **kwargs):
+    #     goods = Commodity.objects.all()
+    #     return render(request, 'index.html', context={
+    #     'goods': goods,
+    #     'hello': "hello",
+    # })
 
 
 def index(request):
