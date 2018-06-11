@@ -7,24 +7,41 @@ from rest_framework.response import Response
 from rest_framework import permissions
 from django.urls import path
 from rest_framework import status
+from rest_framework import generics, mixins
+from rest_framework.response import Response
 
 # Create your views here.
-
-class CommodityView(viewsets.ViewSet):
-
+#######################
+#  基于类
+######################
+class CommoditysView(generics.ListCreateAPIView):
     queryset = Commodity.objects.all()
     serializer_class = CSerializers
 
 
-# @api_view(["GET"])
-# @permission_classes((permissions.AllowAny,))
-# def index(request):
-#     if request.method == "GET":
-#         result = 
-#         ser = CSerializers(result, many=True)
-#         return Response(ser.data, 200)
+class CommodityView(generics.ListCreateAPIView):
+    queryset = Commodity.objects.all()
+    serializer_class = CSerializers
+    
+    def get(self, request, *args, **kwargs):
+        try:
+            kid = kwargs.get("id")
+            # result = Commodity.objetcs.get_or_404(id=kid)
+            result = self.queryset.get(id=kid)
+            ser = CSerializers(result)
+            return Response(ser.data, status.HTTP_200_OK)
+        except:
+            return Response([], status.HTTP_404_NOT_FOUND)
+
+        
 
 
+
+
+
+#######################
+#  基于函数
+######################
 @api_view(["GET", "POST"])
 @permission_classes((permissions.AllowAny,))
 def goods(request):

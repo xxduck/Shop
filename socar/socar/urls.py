@@ -20,6 +20,6 @@ from restfulshop import urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('shop/', include(surls)),
+    path('', include(surls)),
     path("api/", include(urls))
 ]

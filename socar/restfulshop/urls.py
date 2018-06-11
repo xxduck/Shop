@@ -1,6 +1,6 @@
 from django.urls import path, include
 from rest_framework import routers
-from .views import goods, good
+from .views import goods, good, CommoditysView, CommodityView
 
 router = routers.DefaultRouter()
 
@@ -12,7 +12,7 @@ router = routers.DefaultRouter()
 urlpatterns = [
     # path(r'', include(router.urls)),
     # path(r'auth', include('rest_framework.urls', namespace='rest_framework'))
-    path("goods/", goods),
+    path("goods/", CommoditysView.as_view()),
     path("", include(router.urls)),
-    path("goods/<int:id>", good)
+    path("goods/<int:id>", CommodityView.as_view())
 ]

@@ -42,7 +42,7 @@ def create(request):
             return HttpResponse(content="注册成功")
 
     return render(request, "create.html", context={
-        "form": CreationForm})
+        "form": CreationForm()})
 
 
 def user_logout(request):
