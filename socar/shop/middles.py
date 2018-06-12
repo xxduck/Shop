@@ -11,14 +11,12 @@ class ShopCar(MiddlewareMixin):
     
     def process_request(self, request):
         # 读取cookies
-        print("hehe")
-        print(request.COOKIES)
         # 获取cookies，并给request添加新的属性
         request.car = {}
-        shopcar = eval(request.COOKIES.get("goods"))
+        shopcar = request.COOKIES.get("goods")
         if shopcar:
             
-            request.car.update(shopcar)
+            request.car.update(eval(shopcar))
 
     
     def process_response(self, request, response):

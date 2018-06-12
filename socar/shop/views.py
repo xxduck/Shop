@@ -85,7 +85,7 @@ def info(request, id):
             print(form.cleaned_data)
             response = HttpResponse(str(good.price * form.cleaned_data.get("num")))
             request.car.update({
-                good.name: form.cleaned_data.get("num")
+                good.id: form.cleaned_data.get("num")
             })
             return response
         else:
@@ -114,5 +114,26 @@ def a(request):
         else:
             return render(request, "tmp.html", context={
             "form": form})
+
+
+
+# 购物车页面
+def carpage(request):
+    return render(request, template_name='carinfo.html', context={
+        'goods': request.car
+    })
+
+@login_required
+def buy(request):
+    # 购买页面
+    price = 0
+    print(request.car)
+    for k, v in request.car.items():
+        good = Commodity.objects.get(id=k)
+        price += good.price * v
+
+    return render(request, template_name='buy.html', context={
+        'price': price
+    })
 
     

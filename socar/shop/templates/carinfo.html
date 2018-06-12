@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+
+    <div>
+        {% for k, v in goods.items %}
+        <li>商品名称：{{ k }}- 商品数量：{{ v }} 件</li>
+        {% endfor %}
+    </div>
+    <div>
+        <a href="{% url 'buy' %}">立即购买</a>
+    </div>
+
+{% endblock %}
